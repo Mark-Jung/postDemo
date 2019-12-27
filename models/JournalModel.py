@@ -9,17 +9,17 @@ class JournalModel(db.Model, BaseModel):
     date_created = db.Column(db.DateTime)
     title = db.Column(db.String(50))
     text = db.Column(db.String(280))
-    longitude = db.Column(db.Numeric(precision=6))
-    latitude = db.Column(db.Numeric(precision=6))
+    longitude = db.Column(db.String(255))
+    latitude = db.Column(db.String(255))
     imageUrl = db.Column(db.String(100))
 
-    user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
+    #user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
 
     def __init__(self, title, text, longitude, latitude, imageUrl):
         self.title = title
         self.text = text
-        self.longitude = longitude
-        self.latitude = latitude
+        self.longitude = str(longitude)
+        self.latitude = str(latitude)
         self.imageUrl = imageUrl
         self.date_created = datetime.utcnow()
     
